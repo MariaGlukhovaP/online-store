@@ -1,0 +1,16 @@
+.navList {
+  display: flex;
+}
+
+.listItem {
+  width: 140px;
+  height: 50px;
+  list-style: none;
+  cursor: pointer;
+  line-height: 50px;
+  text-align: center;
+}
+
+.listItem:hover {
+  background-color: rgb(58, 182, 141);
+}
