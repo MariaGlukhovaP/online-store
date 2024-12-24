@@ -12,14 +12,20 @@ export const ProductsList = () => {
     fetch(api)
       .then((result) => result.json())
       .then((result) => {
-        setHeadphones(result.headphones);
+        setHeadphones(result.data);
       });
   }, []);
 
   return (
     <ul className={styles.productsContainer}>
-      {headphones.map(({ name, price, id, img }) => (
-        <ProductListItem key={id} name={name} price={price} id={id} img={img} />
+      {headphones.map(({ name, price, _id, img }) => (
+        <ProductListItem
+          key={_id}
+          name={name}
+          price={price}
+          id={_id}
+          img={img}
+        />
       ))}
     </ul>
   );

@@ -1,38 +1,69 @@
 const PORT = 9001;
+const URLDB = "mongodb://localhost:27017";
 
 const express = require("express");
 const cors = require("cors");
 const mongoose = require("mongoose");
 const jwt = require("jsonwebtoken");
-const headphones = require("./constants/mock");
+const User = require("./models/user");
+const Product = require("./models/product");
+const { secret } = require("./config");
 
 const app = express();
 
 app.use(cors());
 app.use(express.json());
 
-app.post("/registration", (req, res) => {
+const generateAccessToken = (id) => {
+  const payload = {
+    id,
+  };
+
+  return jwt.sign(payload, secret, { expiresIn: "24h" });
+};
+
+app.post("/registration", async (req, res) => {
   console.log(req.body);
+
+  const { login, password, email } = req.body;
+
+  const user = new User({ login, password, email });
+  await user.save();
+
+  const token = generateAccessToken(user._id);
 
   res.json({
     message: "Вы успешно зарегистрировались!",
+    token: token,
   });
 });
 
-app.post("/login", (req, res) => {
+app.post("/login", async (req, res) => {
   console.log(req.body);
+
+  const { login, password } = req.body;
+  const user = await User.findOne({ login });
+
+  if (!user) {
+    return res.status(400).json({ message: "Пользователь не найден" });
+  } else if (user.password !== password) {
+    return res.status(400).json({ message: "Неверный логин или пароль" });
+  }
 
   res.json({
     message: "Вы успешно авторизовались!",
   });
 });
 
-app.get("/products", (req, res) => {
-  res.json({ headphones });
+app.get("/products", async (req, res) => {
+  const products = await Product.find();
+
+  res.json({ data: products });
 });
 
-const start = () => {
+const start = async () => {
   try {
+    await mongoose.connect(URLDB, { authSource: "admin" });
     app.listen(PORT, () => console.log(`Server is running on port ${PORT}`));
   } catch (err) {
     console.log(err);

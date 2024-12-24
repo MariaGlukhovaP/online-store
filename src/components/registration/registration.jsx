@@ -1,38 +1,31 @@
-import dataFormatter from "../../helpers/dataFormatter";
+import { useHandleClick } from "../../helpers/useHandleClick";
 import { Button } from "../button/button";
 import { LogInInput } from "../log-in-input/log-in-input";
 
 export const Registration = () => {
-  const handleClick = () => {
-    const login = document.getElementById("login").value;
-    const password = document.getElementById("password").value;
-    const email = document.getElementById("email").value;
-
-    const data = dataFormatter(login, password, email);
-
-    console.log(data);
-
-    const api = "http://localhost:9001/registration";
-
-    fetch(api, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    })
-      .then((result) => result.json())
-      .then((result) => {
-        console.log(result);
-      });
-  };
+  const { handleClick, setLogin, setPassword, setEmail } = useHandleClick();
 
   return (
     <>
       <h2>Регистрация</h2>
-      <LogInInput id="login" placeholder="Логин" type="login" />
-      <LogInInput id="password" placeholder="Пароль" type="password" />
-      <LogInInput id="email" placeholder="Email" type="email" />
+      <LogInInput
+        id="login"
+        placeholder="Логин"
+        type="login"
+        onChange={(e) => setLogin(e.target.value)}
+      />
+      <LogInInput
+        id="password"
+        placeholder="Пароль"
+        type="password"
+        onChange={(e) => setPassword(e.target.value)}
+      />
+      <LogInInput
+        id="email"
+        placeholder="Email"
+        type="email"
+        onChange={(e) => setEmail(e.target.value)}
+      />
       <Button text="Сохранить" type="submit" onClick={handleClick} />
     </>
   );
