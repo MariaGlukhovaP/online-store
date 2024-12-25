@@ -1,0 +1,24 @@
+.list {
+  display: flex;
+  flex-direction: column;
+  row-gap: 15px;
+}
+
+.total {
+  font-weight: 600;
+  font-size: larger;
+}
+
+.order {
+  position: absolute;
+  bottom: 100px;
+}
+
+.submit {
+  padding: 7px 10px;
+  font-size: large;
+  border: 3px solid rgb(134, 214, 187);
+  border-radius: 15px;
+  margin-top: 20px;
+  cursor: pointer;
+}

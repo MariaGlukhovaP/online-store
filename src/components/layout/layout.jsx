@@ -7,6 +7,7 @@ import { LogIn } from "../log-in/log-in";
 import { Registration } from "../registration/registration";
 import { Header } from "../header/header";
 import { Footer } from "../footer/footer";
+import { CartContextProvider } from "../cart-context/cart-context";
 
 export const Layout = () => {
   const [page, setPage] = useState("Main");
@@ -33,11 +34,11 @@ export const Layout = () => {
   };
 
   return (
-    <div>
+    <CartContextProvider>
       <Header setPage={setPage} setModalBox={setModalBox} />
       {pages[page]}
       {modalBoxes[modalBox]}
       <Footer setPage={setPage} />
-    </div>
+    </CartContextProvider>
   );
 };
