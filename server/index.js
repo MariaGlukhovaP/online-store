@@ -76,6 +76,28 @@ app.get("/personal-data", async (req, res) => {
   });
 });
 
+app.put("/update-personal-data", async (req, res) => {
+  const token = req.headers.authorization;
+  const id = jwt.verify(token, secret).id;
+
+  const user = await User.findById(id);
+
+  if (!user) {
+    return res.status(400).json({ message: "Пользователь не найден" });
+  }
+
+  const { login, email, password } = req.body;
+
+  await User.updateOne({ _id: id }, { login, email, password });
+
+  await user.save();
+
+  res.json({
+    message: "Данные успешно обновлены!",
+    data: user,
+  });
+});
+
 const start = async () => {
   try {
     await mongoose.connect(URLDB, { authSource: "admin" });
