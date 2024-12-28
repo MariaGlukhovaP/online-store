@@ -1,8 +1,26 @@
-.button {
+.default {
   margin-top: 15px;
   padding: 5px 20px;
   border-radius: 7px;
   border: none;
   cursor: pointer;
   background-color: rgb(134, 214, 187);
+}
+
+.big {
+  padding: 7px 10px;
+  font-size: large;
+  border: 3px solid rgb(134, 214, 187);
+  border-radius: 15px;
+  margin-top: 20px;
+  cursor: pointer;
+  width: 250px;
+}
+
+.light {
+  width: 100px;
+  height: 30px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
 }

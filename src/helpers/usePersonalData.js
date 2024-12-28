@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export const useHandleClick = () => {
+const usePersonalData = () => {
   const [login, setLogin] = useState();
   const [password, setPassword] = useState();
   const [email, setEmail] = useState();
@@ -32,8 +32,11 @@ export const useHandleClick = () => {
       .then((result) => result.json())
       .then((result) => {
         console.log(result);
+        localStorage.setItem("token", result.token);
       });
   };
 
   return { handleClick, setLogin, setPassword, setEmail };
 };
+
+export default usePersonalData;

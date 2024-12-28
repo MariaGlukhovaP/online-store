@@ -1,9 +1,9 @@
-import { useHandleClick } from "../../helpers/useHandleClick";
+import usePersonalData from "../../helpers/usePersonalData";
 import { Button } from "../button/button";
 import { LogInInput } from "../log-in-input/log-in-input";
 
 export const Registration = () => {
-  const { handleClick, setLogin, setPassword, setEmail } = useHandleClick();
+  const { handleClick, setLogin, setPassword, setEmail } = usePersonalData();
 
   return (
     <>
@@ -26,7 +26,12 @@ export const Registration = () => {
         type="email"
         onChange={(e) => setEmail(e.target.value)}
       />
-      <Button text="Сохранить" type="submit" onClick={handleClick} />
+      <Button
+        text="Сохранить"
+        type="submit"
+        onClick={handleClick}
+        viewVariant="default"
+      />
     </>
   );
 };

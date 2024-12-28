@@ -30,11 +30,8 @@ app.post("/registration", async (req, res) => {
   const user = new User({ login, password, email });
   await user.save();
 
-  const token = generateAccessToken(user._id);
-
   res.json({
     message: "Вы успешно зарегистрировались!",
-    token: token,
   });
 });
 
@@ -44,6 +41,8 @@ app.post("/login", async (req, res) => {
   const { login, password } = req.body;
   const user = await User.findOne({ login });
 
+  const token = generateAccessToken(user._id);
+
   if (!user) {
     return res.status(400).json({ message: "Пользователь не найден" });
   } else if (user.password !== password) {
@@ -52,6 +51,7 @@ app.post("/login", async (req, res) => {
 
   res.json({
     message: "Вы успешно авторизовались!",
+    token: token,
   });
 });
 
@@ -59,6 +59,21 @@ app.get("/products", async (req, res) => {
   const products = await Product.find();
 
   res.json({ data: products });
+});
+
+app.get("/personal-data", async (req, res) => {
+  const token = req.headers.authorization;
+  const id = jwt.verify(token, secret).id;
+
+  const user = await User.findById(id);
+
+  if (!user) {
+    return res.status(400).json({ message: "Пользователь не найден" });
+  }
+
+  res.json({
+    data: user,
+  });
 });
 
 const start = async () => {

@@ -15,7 +15,12 @@ export const ProductListItem = ({ name, price, id, img }) => {
       <h3 className={styles.title}>{name}</h3>
       <img src={img} alt="Product Img" className={styles.img} />
       <p className={styles.price}>{`${price} руб`}</p>
-      <Button text="В корзину" type="button" onClick={addItemToCart} />
+      <Button
+        text="В корзину"
+        type="button"
+        onClick={addItemToCart}
+        viewVariant="default"
+      />
     </li>
   );
 };

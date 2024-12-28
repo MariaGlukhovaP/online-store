@@ -1,9 +1,9 @@
-import { useHandleClick } from "../../helpers/useHandleClick";
+import usePersonalData from "../../helpers/usePersonalData";
 import { Button } from "../button/button";
 import { LogInInput } from "../log-in-input/log-in-input";
 
 export const LogIn = () => {
-  const { handleClick, setLogin, setPassword } = useHandleClick();
+  const { handleClick, setLogin, setPassword } = usePersonalData();
 
   return (
     <>
@@ -20,7 +20,12 @@ export const LogIn = () => {
         type="password"
         onChange={(e) => setPassword(e.target.value)}
       />
-      <Button text="Войти" type="submit" onClick={handleClick} />
+      <Button
+        text="Войти"
+        type="submit"
+        onClick={handleClick}
+        viewVariant="default"
+      />
     </>
   );
 };

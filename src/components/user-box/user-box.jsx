@@ -1,17 +1,21 @@
+import { Button } from "../button/button";
 import styles from "./user-box.module.css";
 
 export const UserBox = ({ setModalBox }) => {
   return (
     <div className={styles.userBox}>
-      <button className={styles.button} onClick={() => setModalBox("Login")}>
-        Вход
-      </button>
-      <button
-        className={styles.button}
+      <Button
+        text="Вход"
+        onClick={() => setModalBox("Login")}
+        type="text"
+        viewVariant="light"
+      />
+      <Button
+        text="Регистрация"
         onClick={() => setModalBox("Registration")}
-      >
-        Регистрация
-      </button>
+        type="text"
+        viewVariant="light"
+      />
     </div>
   );
 };

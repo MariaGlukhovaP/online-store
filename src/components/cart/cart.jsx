@@ -1,3 +1,4 @@
+import { Button } from "../button/button";
 import { useCart } from "../cart-context/use-cart";
 import { CartListItem } from "../cart-list-item/cart-list-item";
 
@@ -17,12 +18,15 @@ export const Cart = () => {
           <CartListItem product={product} />
         ))}
       </ul>
-      <div className={styles.order}>
-        <div className={styles.total}>К оплате: {countTotal() + " руб"}</div>
-        <button type="submit" className={styles.submit}>
-          Оформить заказ
-        </button>
-      </div>
+
+      {cartItems.length ? (
+        <div className={styles.order}>
+          <div className={styles.total}>К оплате: {countTotal() + " руб"}</div>
+          <Button text="Оформить заказ" type="submit" viewVariant="big" />
+        </div>
+      ) : (
+        <h3 className={styles.empty}>Корзина пуста</h3>
+      )}
     </div>
   );
 };

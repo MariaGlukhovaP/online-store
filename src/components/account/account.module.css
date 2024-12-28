@@ -1,0 +1,22 @@
+.data {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  border-bottom: 1px solid rgb(212, 212, 212);
+  padding: 0 30px 15px 30px;
+}
+
+.user {
+  display: flex;
+  flex-direction: column;
+  row-gap: 30px;
+}
+
+.dataItem {
+  margin-left: auto;
+  margin-right: 30px;
+}
+
+.empty {
+  text-align: center;
+}
