@@ -3,7 +3,7 @@ import { Button } from "../button/button";
 import { Input } from "../input/input";
 
 export const LogIn = () => {
-  const { handleClick, setLogin, setPassword } = usePersonalData();
+  const { setPersonalData, setLogin, setPassword } = usePersonalData();
 
   return (
     <>
@@ -23,7 +23,7 @@ export const LogIn = () => {
       <Button
         text="Войти"
         type="submit"
-        onClick={handleClick}
+        onClick={setPersonalData}
         viewVariant="default"
       />
     </>

@@ -7,9 +7,13 @@ import { Input } from "../input/input";
 
 export const Account = () => {
   const [user, setUser] = useState([]);
-  const [showInput, setShowInput] = useState(false);
 
-  const { handleClick, setLogin, setPassword, setEmail } = usePersonalData();
+  const [showLoginInput, setShowLoginInput] = useState(false);
+  const [showPasswordInput, setShowPasswordInput] = useState(false);
+  const [showEmailInput, setShowEmailInput] = useState(false);
+
+  const { updatePersonalData, setLogin, setPassword, setEmail } =
+    usePersonalData();
 
   useEffect(() => {
     const api = "http://localhost:9001/personal-data";
@@ -27,8 +31,16 @@ export const Account = () => {
 
   const { login, password, email } = user;
 
-  const handleShowInput = () => {
-    setShowInput(!showInput);
+  const handleShowLoginInput = () => {
+    setShowLoginInput(!showLoginInput);
+  };
+
+  const handleShowPasswordInput = () => {
+    setShowPasswordInput(!showPasswordInput);
+  };
+
+  const handleShowEmailInput = () => {
+    setShowEmailInput(!showEmailInput);
   };
 
   return (
@@ -38,7 +50,7 @@ export const Account = () => {
           <div className={styles.data}>
             <h3>Логин:</h3>
             <p className={styles.dataItem}>{login}</p>
-            {showInput ? (
+            {showLoginInput ? (
               <Input
                 id="login"
                 placeholder="Новый логин"
@@ -49,7 +61,7 @@ export const Account = () => {
               <Button
                 type="text"
                 text="Изменить"
-                onClick={handleShowInput}
+                onClick={handleShowLoginInput}
                 viewVariant="default"
               />
             )}
@@ -57,7 +69,7 @@ export const Account = () => {
           <div className={styles.data}>
             <h3>Пароль:</h3>
             <p className={styles.dataItem}>{password}</p>
-            {showInput ? (
+            {showPasswordInput ? (
               <Input
                 id="password"
                 placeholder="Новый пароль"
@@ -68,7 +80,7 @@ export const Account = () => {
               <Button
                 type="text"
                 text="Изменить"
-                onClick={handleShowInput}
+                onClick={handleShowPasswordInput}
                 viewVariant="default"
               />
             )}
@@ -76,7 +88,7 @@ export const Account = () => {
           <div className={styles.data}>
             <h3>Email:</h3>
             <p className={styles.dataItem}>{email}</p>
-            {showInput ? (
+            {showEmailInput ? (
               <Input
                 id="email"
                 placeholder="Новый email"
@@ -87,7 +99,7 @@ export const Account = () => {
               <Button
                 type="text"
                 text="Изменить"
-                onClick={handleShowInput}
+                onClick={handleShowEmailInput}
                 viewVariant="default"
               />
             )}
@@ -96,12 +108,14 @@ export const Account = () => {
       ) : (
         <h3 className={styles.empty}>Вы не вошли в аккаунт</h3>
       )}
-      <Button
-        text="Сохранить изменения"
-        onClick={handleClick}
-        type="submit"
-        viewVariant="big"
-      />
+      {showLoginInput || showPasswordInput || showEmailInput ? (
+        <Button
+          text="Сохранить изменения"
+          onClick={updatePersonalData}
+          type="submit"
+          viewVariant="big"
+        />
+      ) : null}
     </div>
   );
 };

@@ -3,7 +3,8 @@ import { Button } from "../button/button";
 import { Input } from "../input/input";
 
 export const Registration = () => {
-  const { handleClick, setLogin, setPassword, setEmail } = usePersonalData();
+  const { setPersonalData, setLogin, setPassword, setEmail } =
+    usePersonalData();
 
   return (
     <>
@@ -29,7 +30,7 @@ export const Registration = () => {
       <Button
         text="Сохранить"
         type="submit"
-        onClick={handleClick}
+        onClick={setPersonalData}
         viewVariant="default"
       />
     </>

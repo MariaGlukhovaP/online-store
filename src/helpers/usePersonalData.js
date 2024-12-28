@@ -9,7 +9,7 @@ const usePersonalData = () => {
     return { login, password, email };
   };
 
-  const handleClick = () => {
+  const setPersonalData = () => {
     const data = dataFormatter(login, password, email);
 
     console.log(data);
@@ -36,7 +36,32 @@ const usePersonalData = () => {
       });
   };
 
-  return { handleClick, setLogin, setPassword, setEmail };
+  const updatePersonalData = () => {
+    const data = dataFormatter(login, password, email);
+
+    const token = localStorage.getItem("token");
+
+    fetch("http://localhost:9001/update-personal-data", {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: token,
+      },
+      body: JSON.stringify(data),
+    })
+      .then((result) => result.json())
+      .then((result) => {
+        console.log(result);
+      });
+  };
+
+  return {
+    setPersonalData,
+    updatePersonalData,
+    setLogin,
+    setPassword,
+    setEmail,
+  };
 };
 
 export default usePersonalData;
