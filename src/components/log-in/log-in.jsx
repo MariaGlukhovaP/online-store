@@ -1,6 +1,6 @@
 import usePersonalData from "../../helpers/usePersonalData";
 import { Button } from "../button/button";
-import { LogInInput } from "../log-in-input/log-in-input";
+import { Input } from "../input/input";
 
 export const LogIn = () => {
   const { handleClick, setLogin, setPassword } = usePersonalData();
@@ -8,13 +8,13 @@ export const LogIn = () => {
   return (
     <>
       <h2>Вход</h2>
-      <LogInInput
+      <Input
         id="login"
         placeholder="Логин"
         type="login"
         onChange={(e) => setLogin(e.target.value)}
       />
-      <LogInInput
+      <Input
         id="password"
         placeholder="Пароль"
         type="password"

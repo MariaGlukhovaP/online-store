@@ -4,7 +4,7 @@ import { CartListItem } from "../cart-list-item/cart-list-item";
 
 import styles from "./cart.module.css";
 
-export const Cart = () => {
+export const Cart = ({ setModalBox }) => {
   const { cartItems } = useCart();
 
   const countTotal = () => {
@@ -22,7 +22,12 @@ export const Cart = () => {
       {cartItems.length ? (
         <div className={styles.order}>
           <div className={styles.total}>К оплате: {countTotal() + " руб"}</div>
-          <Button text="Оформить заказ" type="submit" viewVariant="big" />
+          <Button
+            text="Оформить заказ"
+            type="submit"
+            viewVariant="big"
+            onClick={() => setModalBox("Order")}
+          />
         </div>
       ) : (
         <h3 className={styles.empty}>Корзина пуста</h3>

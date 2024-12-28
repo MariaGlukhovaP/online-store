@@ -8,6 +8,7 @@ import { Registration } from "../registration/registration";
 import { Header } from "../header/header";
 import { Footer } from "../footer/footer";
 import { CartContextProvider } from "../cart-context/cart-context";
+import { Order } from "../order/order";
 
 export const Layout = () => {
   const [page, setPage] = useState("Main");
@@ -15,7 +16,7 @@ export const Layout = () => {
 
   const pages = {
     Main: <MainPage />,
-    Cart: <CartPage />,
+    Cart: <CartPage setModalBox={setModalBox} />,
     User: <UserPage />,
   };
 
@@ -29,6 +30,11 @@ export const Layout = () => {
     Registration: (
       <ModalBox setModalBox={setModalBox}>
         <Registration />
+      </ModalBox>
+    ),
+    Order: (
+      <ModalBox setModalBox={setModalBox}>
+        <Order />
       </ModalBox>
     ),
   };

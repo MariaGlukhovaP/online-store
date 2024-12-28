@@ -1,6 +1,6 @@
 import usePersonalData from "../../helpers/usePersonalData";
 import { Button } from "../button/button";
-import { LogInInput } from "../log-in-input/log-in-input";
+import { Input } from "../input/input";
 
 export const Registration = () => {
   const { handleClick, setLogin, setPassword, setEmail } = usePersonalData();
@@ -8,19 +8,19 @@ export const Registration = () => {
   return (
     <>
       <h2>Регистрация</h2>
-      <LogInInput
+      <Input
         id="login"
         placeholder="Логин"
         type="login"
         onChange={(e) => setLogin(e.target.value)}
       />
-      <LogInInput
+      <Input
         id="password"
         placeholder="Пароль"
         type="password"
         onChange={(e) => setPassword(e.target.value)}
       />
-      <LogInInput
+      <Input
         id="email"
         placeholder="Email"
         type="email"

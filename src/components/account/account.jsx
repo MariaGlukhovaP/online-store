@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { Button } from "../button/button";
-import { LogInInput } from "../log-in-input/log-in-input";
 import usePersonalData from "../../helpers/usePersonalData";
 
 import styles from "./account.module.css";
+import { Input } from "../input/input";
 
 export const Account = () => {
   const [user, setUser] = useState([]);
@@ -39,7 +39,7 @@ export const Account = () => {
             <h3>Логин:</h3>
             <p className={styles.dataItem}>{login}</p>
             {showInput ? (
-              <LogInInput
+              <Input
                 id="login"
                 placeholder="Новый логин"
                 type="login"
@@ -58,7 +58,7 @@ export const Account = () => {
             <h3>Пароль:</h3>
             <p className={styles.dataItem}>{password}</p>
             {showInput ? (
-              <LogInInput
+              <Input
                 id="password"
                 placeholder="Новый пароль"
                 type="password"
@@ -77,7 +77,7 @@ export const Account = () => {
             <h3>Email:</h3>
             <p className={styles.dataItem}>{email}</p>
             {showInput ? (
-              <LogInInput
+              <Input
                 id="email"
                 placeholder="Новый email"
                 type="email"

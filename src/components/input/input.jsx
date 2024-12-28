@@ -1,6 +1,6 @@
-import styles from "./log-in-input.module.css";
+import styles from "./input.module.css";
 
-export const LogInInput = ({ id, placeholder, type, onChange }) => {
+export const Input = ({ id, placeholder, type, onChange }) => {
   return (
     <input
       className={styles.input}
