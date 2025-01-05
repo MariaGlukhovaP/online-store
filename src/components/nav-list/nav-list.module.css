@@ -14,3 +14,10 @@
 .listItem:hover {
   background-color: rgb(58, 182, 141);
 }
+
+@media screen and (max-width: 768px) {
+  .navList {
+    flex-direction: column;
+    line-height: 30px;
+  }
+}
